@@ -50,6 +50,10 @@ namespace NextBiggerNumberKata
             var inputChars = input.ToString().ToCharArray();
             inputChars = inputChars.Reverse().ToArray();
             var result = Int32.Parse(string.Join("", inputChars));
+            if(input == result)
+            {
+                return -1;
+            }
             return result;
         }
     }

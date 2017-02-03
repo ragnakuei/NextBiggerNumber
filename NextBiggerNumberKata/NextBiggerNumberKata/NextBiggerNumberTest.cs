@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace NextBiggerNumberKata
 {
@@ -20,6 +21,9 @@ namespace NextBiggerNumberKata
             Assert.AreEqual(expected, actual);
         }
 
+        //Kata.NextBiggerNumber(9)==-1
+        //Kata.NextBiggerNumber(111)==-1
+        //Kata.NextBiggerNumber(531)==-1
         //Assert.AreEqual(531, Kata.NextBiggerNumber(513));
         //Assert.AreEqual(2071, Kata.NextBiggerNumber(2017));
         //Assert.AreEqual(441, Kata.NextBiggerNumber(414));
@@ -30,7 +34,10 @@ namespace NextBiggerNumberKata
     {
         internal static int NextBiggerNumber(int input)
         {
-            throw new NotImplementedException();
+            var inputChars = input.ToString().ToCharArray();
+            inputChars = inputChars.Reverse().ToArray();
+            var result = Int32.Parse(string.Join("", inputChars));
+            return result;
         }
     }
 }

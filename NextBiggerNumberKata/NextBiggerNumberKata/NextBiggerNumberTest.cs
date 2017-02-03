@@ -49,7 +49,20 @@ namespace NextBiggerNumberKata
             Assert.AreEqual(expected, actual);
         }
 
-        //Kata.NextBiggerNumber(111)==-1
+        [TestMethod]
+        public void NextBiggerNumber_input_513_should_be_531()
+        {
+            // arrange
+            var input = 513;
+            var expected = 531;
+
+            // act
+            var actual = Kata.NextBiggerNumber(input);
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
         //Kata.NextBiggerNumber(531)==-1
         //Assert.AreEqual(531, Kata.NextBiggerNumber(513));
         //Assert.AreEqual(2071, Kata.NextBiggerNumber(2017));

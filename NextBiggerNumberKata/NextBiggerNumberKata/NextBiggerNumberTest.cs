@@ -64,7 +64,6 @@ namespace NextBiggerNumberKata
         }
 
         //Kata.NextBiggerNumber(531)==-1
-        //Assert.AreEqual(531, Kata.NextBiggerNumber(513));
         //Assert.AreEqual(2071, Kata.NextBiggerNumber(2017));
         //Assert.AreEqual(441, Kata.NextBiggerNumber(414));
         //Assert.AreEqual(414, Kata.NextBiggerNumber(144));
@@ -74,14 +73,28 @@ namespace NextBiggerNumberKata
     {
         internal static int NextBiggerNumber(int input)
         {
-            var inputChars = input.ToString().ToCharArray();
-            inputChars = inputChars.Reverse().ToArray();
-            var result = Int32.Parse(string.Join("", inputChars));
-            if(input == result)
+            int multiplier = 100;
+            int rightSide = input % multiplier;
+            int leftSide = input / multiplier;
+            int result = -1;
+            if (HasBiggerNumber(rightSide, out result))
             {
-                return -1;
+                result = leftSide * multiplier + result;
             }
             return result;
+        }
+
+        private static bool HasBiggerNumber(int input, out int result)
+        {
+            var inputChars = input.ToString().ToCharArray();
+            inputChars = inputChars.Reverse().ToArray();
+            result = Int32.Parse(string.Join("", inputChars));
+            if (result > input)
+            {
+                return true;
+            }
+            result = -1;
+            return false;
         }
     }
 }

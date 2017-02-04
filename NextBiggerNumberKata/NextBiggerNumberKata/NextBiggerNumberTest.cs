@@ -13,9 +13,10 @@ namespace NextBiggerNumberKata
             // arrange
             var input = 12;
             var expected = 21;
+            var target = new Kata();
 
             // act
-            var actual = Kata.NextBiggerNumber(input);
+            var actual = target.NextBiggerNumber(input);
 
             // assert
             Assert.AreEqual(expected, actual);
@@ -27,9 +28,10 @@ namespace NextBiggerNumberKata
             // arrange
             var input = 9;
             var expected = -1;
+            var target = new Kata();
 
             // act
-            var actual = Kata.NextBiggerNumber(input);
+            var actual = target.NextBiggerNumber(input);
 
             // assert
             Assert.AreEqual(expected, actual);
@@ -41,9 +43,10 @@ namespace NextBiggerNumberKata
             // arrange
             var input = 111;
             var expected = -1;
+            var target = new Kata();
 
             // act
-            var actual = Kata.NextBiggerNumber(input);
+            var actual = target.NextBiggerNumber(input);
 
             // assert
             Assert.AreEqual(expected, actual);
@@ -55,9 +58,10 @@ namespace NextBiggerNumberKata
             // arrange
             var input = 513;
             var expected = 531;
+            var target = new Kata();
 
             // act
-            var actual = Kata.NextBiggerNumber(input);
+            var actual = target.NextBiggerNumber(input);
 
             // assert
             Assert.AreEqual(expected, actual);
@@ -69,9 +73,10 @@ namespace NextBiggerNumberKata
             // arrange
             var input = 531;
             var expected = -1;
+            var target = new Kata();
 
             // act
-            var actual = Kata.NextBiggerNumber(input);
+            var actual = target.NextBiggerNumber(input);
 
             // assert
             Assert.AreEqual(expected, actual);
@@ -83,9 +88,10 @@ namespace NextBiggerNumberKata
             // arrange
             var input = 2017;
             var expected = 2071;
+            var target = new Kata();
 
             // act
-            var actual = Kata.NextBiggerNumber(input);
+            var actual = target.NextBiggerNumber(input);
 
             // assert
             Assert.AreEqual(expected, actual);
@@ -97,9 +103,10 @@ namespace NextBiggerNumberKata
             // arrange
             var input = 414;
             var expected = 441;
+            var target = new Kata();
 
             // act
-            var actual = Kata.NextBiggerNumber(input);
+            var actual = target.NextBiggerNumber(input);
 
             // assert
             Assert.AreEqual(expected, actual);
@@ -111,41 +118,13 @@ namespace NextBiggerNumberKata
             // arrange
             var input = 144;
             var expected = 414;
+            var target = new Kata();
 
             // act
-            var actual = Kata.NextBiggerNumber(input);
+            var actual = target.NextBiggerNumber(input);
 
             // assert
             Assert.AreEqual(expected, actual);
-        }
-    }
-
-    internal class Kata
-    {
-        internal static int NextBiggerNumber(int input)
-        {
-            int multiplier = 100;
-            int rightSide = input % multiplier;
-            int leftSide = input / multiplier;
-            int result = -1;
-            if (HasBiggerNumber(rightSide, out result))
-            {
-                result = leftSide * multiplier + result;
-            }
-            return result;
-        }
-
-        private static bool HasBiggerNumber(int input, out int result)
-        {
-            var inputChars = input.ToString().ToCharArray();
-            inputChars = inputChars.Reverse().ToArray();
-            result = Int32.Parse(string.Join("", inputChars));
-            if (result > input)
-            {
-                return true;
-            }
-            result = -1;
-            return false;
         }
     }
 }

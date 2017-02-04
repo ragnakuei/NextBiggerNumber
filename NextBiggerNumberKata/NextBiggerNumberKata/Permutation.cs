@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NextBiggerNumberKata
 {
@@ -10,7 +7,7 @@ namespace NextBiggerNumberKata
     {
         public List<List<string>> GetResult(List<string> source)
         {
-            _count = source.Count;
+            this._count = source.Count;
             InitialIndexPermutation();
 
             while (_endFlag == false)
@@ -36,7 +33,7 @@ namespace NextBiggerNumberKata
 
             List<string> tmpResult = new List<string>();
             List<string> sourceData = Clone(source);
-            for (int i = 0; i < _count; i++)
+            for (int i = 0; i < this._count; i++)
             {
                 tmpResult.Add(sourceData[cloneIndex[0]]);
 
@@ -59,7 +56,7 @@ namespace NextBiggerNumberKata
 
         private void InitialIndexPermutation()
         {
-            foreach (var i in Enumerable.Range(0, _count))
+            foreach (var i in Enumerable.Range(0, this._count))
             {
                 _indexPermutation.Add(0);
             }

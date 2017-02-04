@@ -191,33 +191,26 @@ namespace NextBiggerNumberKata
 
     public class Kata
     {
-        internal int NextBiggerNumber(int input)
+        internal long NextBiggerNumber(long input)
         {
-            var inputChars = input.ToString().ToCharArray().ToList();
-            for (int i = inputChars.Count - 2; i >= 0; i--)
+            // reference by myjinxin2015 http://www.codewars.com/kata/reviews/561a244567692717a300005b/groups/565c4d1da5ea113c3c000169
+
+            if (input < 10) return -1;
+
+            string inputS = input.ToString();
+            for (int i = inputS.Length - 2; i >= 0; i--)
             {
-                if (inputChars[i] >= inputChars[i + 1]) continue;
+                if (inputS[i] >= inputS[i + 1]) continue;
 
-                var resultLeftSide = inputChars.Take(i);
-                var tempRightSide = inputChars.Skip(i).OrderBy(c => c).ToList();
+                string resultLeft = inputS.Substring(0,i);
 
-                var keyValue = inputChars[i];
-                var resultRightSide = BiggerKeyValueToFirst(tempRightSide, keyValue);
-
-                return Convert.ToInt32(string.Join("", resultLeftSide.Concat(resultRightSide)));
+                var tempRight = string.Concat(inputS.Substring(i).OrderBy(c => c));
+                var keyValue = inputS[i];
+                var biggerKeyValue = tempRight.First(v => v > keyValue);
+                
+                return long.Parse(resultLeft+biggerKeyValue+string.Concat(tempRight.Where( (value,index) => index != tempRight.IndexOf(biggerKeyValue))));
             }
             return -1;
-        }
-
-        private List<char> BiggerKeyValueToFirst(List<char> tempRightSide, char keyValue)
-        {
-            var biggerKeyValueIndex = tempRightSide.LastIndexOf(keyValue) + 1;
-            var biggerKeyValue = tempRightSide[biggerKeyValueIndex];
-            tempRightSide.RemoveAt(biggerKeyValueIndex);
-            
-            var result = new List<char> { biggerKeyValue };
-            result.AddRange(tempRightSide);
-            return result;
         }
     }
 }

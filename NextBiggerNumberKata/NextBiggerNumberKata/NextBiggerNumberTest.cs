@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace NextBiggerNumberKata
 {
@@ -170,6 +171,28 @@ namespace NextBiggerNumberKata
 
             // assert
             Assert.AreEqual(expected, actual);
+        }
+    }
+
+    public class Kata
+    {
+        internal int NextBiggerNumber(int input)
+        {
+            var inputChars = input.ToString().ToCharArray().ToList();
+            for (int i = inputChars.Count - 2; i >= 0; i--)
+            {
+                if (inputChars[i] >= inputChars[i + 1]) continue;
+
+                var resultLeftSide = inputChars.Take(i);
+                var tempRightSide = inputChars.Skip(i).ToList();
+                tempRightSide.Remove(inputChars[i + 1]);
+
+                var resultRightSide = new List<char> { inputChars[i + 1] };
+                resultRightSide = resultRightSide.Concat(tempRightSide.OrderBy(c => c)).ToList();
+                
+                return Convert.ToInt32(string.Join("", resultLeftSide.Concat(resultRightSide)));
+            }
+            return -1;
         }
     }
 }

@@ -141,5 +141,20 @@ namespace NextBiggerNumberKata
             // assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void NextBiggerNumber_input_4312_should_be_4321()
+        {
+            // arrange
+            var input = 4312;
+            var expected = 4321;
+            var target = new Kata();
+
+            // act
+            var actual = target.NextBiggerNumber(input);
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

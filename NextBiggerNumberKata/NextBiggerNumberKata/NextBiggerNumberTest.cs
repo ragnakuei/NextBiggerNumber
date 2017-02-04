@@ -199,15 +199,25 @@ namespace NextBiggerNumberKata
                 if (inputChars[i] >= inputChars[i + 1]) continue;
 
                 var resultLeftSide = inputChars.Take(i);
-                var tempRightSide = inputChars.Skip(i).ToList();
-                tempRightSide.Remove(inputChars[i + 1]);
+                var tempRightSide = inputChars.Skip(i).OrderBy(c => c).ToList();
 
-                var resultRightSide = new List<char> { inputChars[i + 1] };
-                resultRightSide = resultRightSide.Concat(tempRightSide.OrderBy(c => c)).ToList();
-                
+                var keyValue = inputChars[i];
+                var resultRightSide = BiggerKeyValueToFirst(tempRightSide, keyValue);
+
                 return Convert.ToInt32(string.Join("", resultLeftSide.Concat(resultRightSide)));
             }
             return -1;
+        }
+
+        private static List<char> BiggerKeyValueToFirst(List<char> tempRightSide, char keyValue)
+        {
+            var biggerKeyValueIndex = tempRightSide.LastIndexOf(keyValue) + 1;
+            var biggerKeyValue = tempRightSide[biggerKeyValueIndex];
+            tempRightSide.RemoveAt(biggerKeyValueIndex);
+            
+            var result = new List<char> { biggerKeyValue };
+            result.AddRange(tempRightSide);
+            return result;
         }
     }
 }

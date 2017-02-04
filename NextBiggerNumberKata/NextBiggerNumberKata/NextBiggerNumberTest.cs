@@ -209,7 +209,7 @@ namespace NextBiggerNumberKata
             return -1;
         }
 
-        private static List<char> BiggerKeyValueToFirst(List<char> tempRightSide, char keyValue)
+        private List<char> BiggerKeyValueToFirst(List<char> tempRightSide, char keyValue)
         {
             var biggerKeyValueIndex = tempRightSide.LastIndexOf(keyValue) + 1;
             var biggerKeyValue = tempRightSide[biggerKeyValueIndex];
